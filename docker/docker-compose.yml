@@ -1,0 +1,31 @@
+services:
+  postgres:
+    image: postgres:17.2 #letzte version VON 11.02.2025
+    container_name: dev_feedbacklens_backend_postgres
+    restart: unless-stopped # startet nicht neu, wenn er manuell mit docker stop gestoppt wurde.
+    environment:
+      POSTGRES_DB: feedbacklens
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: pwd
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: dev_feedbacklens_backend_pgadmin
+    restart: unless-stopped # startet nicht neu, wenn er manuell mit docker stop gestoppt wurde.
+    environment:
+      PGADMIN_DEFAULT_EMAIL: admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: pwd
+    ports:
+      - "8080:80" # pgAdmin läuft auf Port 8080 des Hosts
+    depends_on:
+      - postgres
+    volumes:
+      - pgadmin_data:/var/lib/pgadmin
+
+volumes:
+  postgres_data:
+  pgadmin_data:
