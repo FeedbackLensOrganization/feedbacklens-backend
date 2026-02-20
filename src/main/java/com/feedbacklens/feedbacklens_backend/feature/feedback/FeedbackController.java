@@ -1,10 +1,10 @@
 package com.feedbacklens.feedbacklens_backend.feature.feedback;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -20,5 +20,20 @@ public class FeedbackController {
     public ResponseEntity<List<Feedback>> getFeedbacks() {
         List<Feedback> feedbacks = feedbackService.getAllFeedbacks();
         return ResponseEntity.ok(feedbacks);
+    }
+
+    @PostMapping
+    public ResponseEntity<Feedback> createFeedback(@RequestBody FeedbackDto request) {
+        if (request.getText() == null || request.getText().trim().isEmpty()) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        // Fake Feedback zurückgeben (ID + Text + Zeit)
+        Feedback fakeFeedback = new Feedback();
+        fakeFeedback.setId(999L); // feste Test-ID
+
+
+        // Kein DB-Save nötig
+        return ResponseEntity.status(HttpStatus.CREATED).body(fakeFeedback);
     }
 }
