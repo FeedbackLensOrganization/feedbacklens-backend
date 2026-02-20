@@ -4,7 +4,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -23,17 +22,10 @@ public class FeedbackController {
     }
 
     @PostMapping
-    public ResponseEntity<Feedback> createFeedback(@RequestBody FeedbackDto request) {
+    public ResponseEntity<Feedback> createFeedback(@RequestBody FeedbackDto request) throws Exception {
         if (request.getText() == null || request.getText().trim().isEmpty()) {
             return ResponseEntity.badRequest().build();
         }
-
-        // Fake Feedback zurückgeben (ID + Text + Zeit)
-        Feedback fakeFeedback = new Feedback();
-        fakeFeedback.setId(999L); // feste Test-ID
-
-
-        // Kein DB-Save nötig
-        return ResponseEntity.status(HttpStatus.CREATED).body(fakeFeedback);
+        return ResponseEntity.status(HttpStatus.CREATED).body(feedbackService.analyzeTextInAWSComprehend(request.getText()));
     }
 }

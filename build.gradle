@@ -37,6 +37,10 @@ dependencies {
 	testImplementation 'org.springframework.boot:spring-boot-starter-flyway-test'
 	testImplementation 'org.springframework.boot:spring-boot-starter-webmvc-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+	implementation("software.amazon.awssdk:comprehend")
+	implementation(platform("software.amazon.awssdk:bom:2.25.40"))
+	implementation("software.amazon.awssdk:sso")
+	implementation("software.amazon.awssdk:ssooidc")
 }
 
 tasks.named('test') {
