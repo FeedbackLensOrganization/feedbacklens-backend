@@ -17,8 +17,8 @@ spring:
 
   flyway:
     locations:
-      db/migration/common
-      db/migration/prod
+      - classpath:db/migration/common
+      - classpath:db/migration/prod
     clean-disabled: true
 
 logging:
@@ -27,5 +27,5 @@ logging:
 
 app:
   cors:
-    allowed-origins: "http://localhost:8080"
+    allowed-origins: "http://localhost:8081"
     allowed-methods: "GET,POST,PUT,DELETE"

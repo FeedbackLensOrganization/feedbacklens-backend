@@ -1,0 +1,6 @@
+services:
+  backend:
+    build: .
+    container_name: feedbacklens-backend
+    ports:
+      - "9000:9000"
