@@ -6,3 +6,8 @@ spring:
     name: feedbacklens-backend
   profiles:
     active: prod
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: https://cognito-idp.${aws.cognito.region}.amazonaws.com/${aws.cognito.user-pool-id}
