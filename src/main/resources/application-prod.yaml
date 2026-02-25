@@ -29,3 +29,8 @@ app:
   cors:
     allowed-origins: "http://localhost:8081"
     allowed-methods: "GET,POST,PUT,DELETE"
+aws:
+  cognito:
+    user-pool-id: eu-central-1_XXXXXXX   # dein Dev Pool
+    client-id: xxxxxxxxxxxxxxxxxxxxxxxxxx
+    region: eu-north-1

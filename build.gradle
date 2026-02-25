@@ -41,6 +41,12 @@ dependencies {
 	implementation(platform("software.amazon.awssdk:bom:2.25.40"))
 	implementation("software.amazon.awssdk:sso")
 	implementation("software.amazon.awssdk:ssooidc")
+	// AWS SDK v2 für Cognito
+	implementation 'software.amazon.awssdk:cognitoidentityprovider:2.25.60'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-security-oauth2-authorization-server'
+	testImplementation 'org.springframework.boot:spring-boot-starter-security-oauth2-authorization-server-test'
+	testImplementation 'org.springframework.boot:spring-boot-starter-security-test'
 }
 
 tasks.named('test') {
